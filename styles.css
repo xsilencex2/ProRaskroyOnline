@@ -1,0 +1,319 @@
+:root {
+  --main-bg: #f5f5f9;
+  --main: #365881;
+  --accent: #ff9300;
+  --border: #c0cad6;
+  --table-bg: #fff;
+  --row-alt: #f2f6fa;
+}
+
+/* --- Reset & Basics --- */
+html, body {
+  background: var(--main-bg);
+  color: #1a2939;
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  font-size: 16px;
+}
+
+/* --- Layout Containers --- */
+header, main, footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1em;
+  box-sizing: border-box;
+}
+
+/* --- Header --- */
+header {
+  text-align: center;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 1em;
+}
+.subtitle {
+  font-size: 1.1em;
+  color: var(--main);
+}
+
+/* --- Forms --- */
+fieldset {
+  border: 1px solid var(--border);
+  padding: 1em 1.5em;
+  border-radius: 6px;
+  background: #fff;
+  margin-bottom: 1em;
+}
+fieldset label,
+fieldset select,
+fieldset input {
+  display: inline-block;
+  margin-right: 1.5em;
+  margin-top: .5em;
+  font-size: 1em;
+}
+fieldset input[type="number"],
+fieldset input[type="text"],
+fieldset input[type="tel"] {
+  width: 7em;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+#sheet-material,
+#sheet-edge {
+  min-width: 120px;
+  width: 12em;
+  max-width: 98vw;
+}
+
+#sheet-form {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* --- Parts Table --- */
+#parts-section {
+  margin-bottom: 1.5em;
+}
+#parts-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--table-bg);
+  margin-bottom: .6em;
+  font-size: 1em;
+  table-layout: fixed;
+  word-break: break-all;
+}
+
+#parts-table th, #parts-table td {
+  border: 1px solid var(--border);
+  padding: .35em .36em;
+  text-align: center;
+  font-size: 1em;
+  box-sizing: border-box;
+  min-width: 32px;
+  max-width: 60vw;
+  overflow-wrap: break-word;
+  word-break: break-all;
+}
+#parts-table input, #parts-table select {
+  width: 95%;
+  padding: .2em;
+  font-size: 1em;
+  box-sizing: border-box;
+  min-width: 36px;
+  max-width: 95vw;
+}
+#parts-table thead {
+  font-size: .99em;
+}
+
+/* Responsive scroll table for mobile */
+@media (max-width: 700px) {
+  #parts-table,
+  #parts-section {
+    width: 98vw;
+    max-width: 99vw;
+    overflow-x: auto;
+    display: block;
+  }
+  #parts-table thead,
+  #parts-table tbody,
+  #parts-table tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+  }
+  #parts-table th, #parts-table td {
+    padding: .25em .16em;
+    font-size: .97em;
+    min-width: 38px;
+    max-width: 32vw;
+  }
+}
+
+/* Extra small screens: single-column fields, smaller table */
+@media (max-width: 500px) {
+  html, body {
+    font-size: 15px;
+  }
+  header, main, footer {
+    padding: .5em;
+    max-width: 100vw;
+    box-sizing: border-box;
+  }
+  fieldset {
+    padding: .45em .6em;
+  }
+  .subtitle {
+    font-size: 1em;
+    word-break: break-all;
+  }
+  #parts-table th, #parts-table td {
+    font-size: .92em;
+    min-width: 28px;
+    padding: .15em .09em;
+  }
+  #parts-table input, #parts-table select {
+    font-size: .99em;
+    min-width: 30px;
+  }
+}
+
+/* Make parts-table scrollable on small screens */
+#parts-section {
+  overflow-x: auto;
+}
+#parts-table {
+  min-width: 560px;
+}
+
+#add-part-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: .5em 1.5em;
+  font-size: 1em;
+  cursor: pointer;
+  margin-bottom: 1em;
+  margin-top: 1em;
+  display: block;
+}
+#add-part-btn:hover {
+  background: #d47900;
+}
+@media (max-width: 600px) {
+  #add-part-btn {
+    width: 96vw;
+    margin: 0.7em auto 1.1em auto;
+    font-size: 1.05em;
+    padding: .75em 0;
+    max-width: 99vw;
+  }
+}
+
+/* --- Summary & Export --- */
+.summary-data {
+  font-size: 1.1em;
+}
+.sheet-preview-container {
+  flex: 1 1 260px;
+  max-width: 340px;
+  text-align: center;
+}
+#sheet-preview {
+  border: 1.5px solid var(--border);
+  background: #fff;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+#export-section {
+  margin: 1.5em 0;
+  text-align: center;
+}
+#export-json-btn, #import-btn {
+  background: var(--main);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: .6em 1.3em;
+  font-size: 1em;
+  cursor: pointer;
+  margin-right: .7em;
+}
+#export-json-btn:hover, #import-btn:hover {
+  background: #233e61;
+}
+#export-excel-btn {
+  background: var(--main);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: .7em 1.4em;
+  font-size: 1.10em;
+  cursor: pointer;
+  margin-bottom: .9em;
+  margin-top: .5em;
+  display: inline-block;
+}
+#export-excel-btn:hover {
+  background: #233e61;
+}
+#export-output {
+  margin-top: .8em;
+  font-family: 'Courier New', monospace;
+  background: #f4f6f8;
+  padding: .8em;
+  border-radius: 6px;
+  max-width: 97vw;
+  overflow-x: auto;
+  word-break: break-all;
+  font-size: .95em;
+}
+
+/* --- Form labels single column on mobile --- */
+@media (max-width: 700px) {
+  fieldset label, fieldset select, fieldset input {
+    display: block;
+    width: 98vw;
+    max-width: 99vw;
+    margin: .48em 0 .4em 0;
+  }
+  fieldset input[type="number"],
+  fieldset input[type="text"],
+  fieldset input[type="tel"] {
+    width: 95vw;
+    max-width: 95vw;
+  }
+  #sheet-material,
+  #sheet-edge {
+    width: 94vw;
+    max-width: 96vw;
+    min-width: 80px;
+  }
+}
+
+/* --- Cues & Info --- */
+.hint {
+  color: var(--accent);
+  margin-bottom: .4em;
+  font-style: italic;
+  font-size: .95em;
+  line-height: 1.35;
+}
+
+footer {
+  text-align: center;
+  margin-top: 3em;
+  font-size: .95em;
+  color: #7e8dac;
+  word-break: break-all;
+}
+
+/* Visually adjust table at very small widths */
+@media (max-width: 360px) {
+  #parts-table th, #parts-table td {
+    padding: .08em .03em;
+    font-size: .82em;
+    min-width: 18px;
+  }
+  #export-excel-btn {
+    font-size: .91em;
+    padding: .5em .5em;
+  }
+}
+
+/* Remove default arrows on number input for better mobile UX */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}

@@ -1,0 +1,140 @@
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>CRM для раскроя ДСП — Самообслуживание клиентов</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header>
+    <h1>Онлайн-оформление заказа на раскрой ДСП</h1>
+    <p class="subtitle">Введите параметры листа и деталей. Система рассчитает раскрой и сформирует Excel-файл заказа для печати.</p>
+  </header>
+
+  <main>
+    <form id="user-form">
+      <fieldset>
+        <legend>Ваши контактные данные</legend>
+        <label>
+          Имя:
+          <input type="text" id="user-firstname" name="firstname" required maxlength="32" autocomplete="given-name">
+        </label>
+        <label>
+          Фамилия:
+          <input type="text" id="user-lastname" name="lastname" required maxlength="32" autocomplete="family-name">
+        </label>
+        <label>
+          Телефон:
+          <input type="tel" id="user-phone" name="phone" required pattern=".{6,}" maxlength="20" autocomplete="tel">
+        </label>
+      </fieldset>
+    </form>
+
+    <form id="sheet-form">
+      <fieldset>
+        <legend>Параметры листа</legend>
+        <label>
+          Размер листа:
+          <select id="sheet-size-select">
+            <option value="2800x2070">Стандарт (2800 × 2070 мм)</option>
+            <option value="2500x2070">2500 × 2070 мм</option>
+            <option value="2500x1830">2500 × 1830 мм</option>
+            <option value="2750x1830">2750 × 1830 мм</option>
+            <option value="custom">Другое (свой размер)</option>
+          </select>
+        </label>
+        <div id="custom-sheet-size" style="display: none;">
+          <label>Ширина (мм): <input type="number" id="sheet-width" min="1000" max="5000" value="2800"></label>
+          <label>Высота (мм): <input type="number" id="sheet-height" min="1000" max="3000" value="2070"></label>
+        </div>
+        <label>
+          Материал:
+          <select id="sheet-material-type">
+            <option value="ДСП">ДСП</option>
+            <option value="МДФ">МДФ</option>
+            <option value="ХДФ">ХДФ</option>
+            <option value="custom">Другое</option>
+          </select>
+        </label>
+        <span id="material-custom-name">
+          <label>Название материала:
+            <input type="text" id="sheet-material" maxlength="64" placeholder="Название материала">
+          </label>
+        </span>
+        <label>
+          <input type="checkbox" id="sheet-texture" style="margin-right:0.5em;">
+          Учет текстуры на материале
+        </label>
+        <label style="margin-left:1em;">
+          Кромка:
+          <input type="text" id="sheet-edge" maxlength="32" placeholder="например, ПВХ">
+        </label>
+        <label style="margin-left:1em;">
+          Толщина кромки:
+          <select id="edge-thickness">
+            <option value="1 мм">1 мм</option>
+            <option value="0.8 мм">0.8 мм</option>
+            <option value="0.4 мм">0.4 мм</option>
+          </select>
+        </label>
+        <span id="default-thickness-label" style="margin-left:1em;">
+          (Толщина по умолчанию: <span id="sheet-thickness-value">16</span> мм)
+        </span>
+        <label id="custom-thickness-label" style="margin-left:1em;">
+          Толщина (мм):
+          <input type="number" id="sheet-thickness" min="1" max="40" step="0.1" value="16">
+        </label>
+      </fieldset>
+    </form>
+
+    <section id="parts-section">
+      <h2>Детали для раскроя</h2>
+      <div class="hint">Минимальный размер детали — 5 мм. Вводите все размеры в миллиметрах, количество — в штуках.</div>
+      <table id="parts-table">
+        <thead>
+          <tr>
+            <th>№</th>
+            <th>Длина (мм)</th>
+            <th>Ширина (мм)</th>
+            <th>Кол-во</th>
+            <th>TXT (текстура)</th>
+            <th>Вверх</th>
+            <th>Вниз</th>
+            <th>Лево</th>
+            <th>Право</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="parts-tbody">
+        </tbody>
+      </table>
+      <button id="add-part-btn" type="button">Добавить деталь</button>
+    </section>
+
+    <section id="summary-section">
+      <h2>Расчёт площади и отходов</h2>
+      <div class="summary-data">
+        <p>Занятая площадь: <span id="used-area">0</span> м²</p>
+        <p>Остаток/отходы: <span id="waste-percent">0</span>%</p>
+      </div>
+    </section>
+
+    <section id="export-section">
+      <button id="export-excel-btn" type="button">Скачать заказ (Excel)</button>
+      <div id="export-output"></div>
+    </section>
+  </main>
+
+  <footer>
+    <small>CRM для раскроя ДСП &copy; 2024. Все размеры в миллиметрах. Введите реальные параметры для корректного заказа.</small>
+  </footer>
+  <script type="importmap">
+    {
+      "imports": {
+        "xlsx": "https://cdn.jsdelivr.net/npm/xlsx@0.18.5/+esm"
+      }
+    }
+  </script>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
