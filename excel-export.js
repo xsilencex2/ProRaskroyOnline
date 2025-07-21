@@ -3,7 +3,7 @@ import { state } from './state.js';
 import { el, filenameSafe } from './utils.js';
 
 // Telegram Bot API конфигурация
-const BOT_TOKEN = '7817418339:AAECZluUMBptUKpZl_WSAHKIuS8l2nHBTpU'; // Ваш токен от @BotFather
+const BOT_TOKEN = '8113932123:AAGr1jvFPsD-L49R3BfdLydvAnQ8PVTo58k'; // Ваш токен от @BotFather
 const CHAT_ID = '2094407850'; // Ваш chat_id
 
 export async function exportToExcel() {
